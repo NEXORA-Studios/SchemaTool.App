@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 name: ⚡️ New File Format Support Request
-title: '[feat] '
+title: '[feat(nffs)] '
 description: Suggest an new file format for load
 labels: [ 'type: nffs request', 'status: needs triage' ]
 
