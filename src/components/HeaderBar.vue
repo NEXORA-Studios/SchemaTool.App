@@ -1,12 +1,21 @@
 <script lang="ts" setup>
-    import { useRoute, useRouter } from "vue-router";
     import { reactive } from "vue";
+    import { useRoute, useRouter } from "vue-router";
+    import { NbtFile } from "deepslate";
     import { getCurrentWindow } from "@tauri-apps/api/window";
     import { askFileDialog } from "../modules/ModDialog.ts";
     import { read } from "../modules/ModFileSystem.ts";
-    import { handleCSVRecipe, handleTextRecipe } from "../modules/ModFileHandler.ts";
+    import { handleCSVRecipe, handleNBTRecipe, handleTextRecipe, TNbtObject } from "../modules/ModFileHandler.ts";
     import { $t } from "../modules/I18N/ModI18N.ts";
     import EventBus from "../modules/ModEventBus.ts";
+    
+    interface TBaseNbtObject {
+        bedrockHeader: any;
+        compression: string;
+        littleEndian: boolean;
+        name: string;
+        root: TNbtObject;
+    }
     
     const $appWindow = getCurrentWindow();
     const $route = useRoute();
@@ -52,21 +61,43 @@
         schematic: {
             litematic: () => {
             },
-            nbt: () => {
+            // litematic: async () => {
+            //     const fp = await askFileDialog([{
+            //         name: translatedTexts.filedialog.litematic,
+            //         extensions: ["litematic"]
+            //     }]);
+            //     if (!fp) return;
+            //     const data = <Uint8Array>await read(fp, false, true, false);
+            //     console.log(NbtFile.read(data).toJson());
+            // },
+            nbt: async () => {
+                const fp = await askFileDialog([{
+                    name: translatedTexts.filedialog.nbt,
+                    extensions: ["nbt"]
+                }]);
+                if (!fp) return;
+                const data = <Uint8Array>await read(fp, false, true, false);
+                handleNBTRecipe(fp, <TNbtObject>(<TBaseNbtObject><unknown>NbtFile.read(data).toJson())["root"]);
             }
         },
         recipe: {
             csv: async () => {
-                const fp = await askFileDialog([{ name: translatedTexts.filedialog.csv, extensions: ["csv"] }]);
+                const fp = await askFileDialog([{
+                    name: translatedTexts.filedialog.csv,
+                    extensions: ["csv"]
+                }]);
                 if (!fp) return;
-                const data = await read(fp, false, false, false);
-                handleCSVRecipe(data as string);
+                const data = <string>await read(fp, false, false, false);
+                handleCSVRecipe(fp, data);
             },
             txt: async () => {
-                const fp = await askFileDialog([{ name: translatedTexts.filedialog.text, extensions: ["txt"] }]);
+                const fp = await askFileDialog([{
+                    name: translatedTexts.filedialog.text,
+                    extensions: ["txt"]
+                }]);
                 if (!fp) return;
-                const data = await read(fp, false, false, false);
-                handleTextRecipe(data as string);
+                const data = <string>await read(fp, false, false, false);
+                handleTextRecipe(fp, data);
             }
         },
         handleNavigate: () => {
@@ -97,10 +128,10 @@
                                     {{ translatedTexts.text.file }} {{ translatedTexts.text.coming_soon }}
                                 </a>
                             </li>
-                            <li class="disabled" @click=handlers.schematic.nbt>
+                            <li @click=handlers.schematic.nbt>
                                 <a>
                                     <kbd class="kbd kbd-xs">.nbt</kbd>
-                                    {{ translatedTexts.text.file }} {{ translatedTexts.text.coming_soon }}
+                                    {{ translatedTexts.text.file }}
                                 </a>
                             </li>
                         </ul>

@@ -1,5 +1,50 @@
-import { getMinecraftItem, MinecraftItem } from "./ItemData/ModItemDB.ts";
+import { Item, queryItemByName, queryItemByRegisterName } from "./ItemData/ModItemDB.ts";
 import EventBus from "./ModEventBus.ts";
+
+export interface TNbtObject {
+    blocks: {
+        type: number,
+        value: {
+            type: number,
+            items: {
+                pos: {
+                    type: number,
+                    value: [number, number, number]
+                },
+                state: {
+                    type: number,
+                    value: number
+                }
+            }[]
+        }
+    };
+    entities: { type: number, value: object[] };
+    palette: {
+        type: number,
+        value: {
+            type: number,
+            items: {
+                Name: {
+                    type: number,
+                    value: string
+                },
+                Properties?: object
+            }[]
+        }
+    };
+    size: {
+        type: number,
+        value: [number, number, number]
+    },
+    DataVersion: {
+        type: number,
+        value: number
+    },
+    Railways_DataVersion?: {
+        type: number,
+        value: number
+    },
+}
 
 export interface TItemCount {
     shulker_box: number;
@@ -8,7 +53,7 @@ export interface TItemCount {
 }
 
 interface TRecipeItem {
-    item: MinecraftItem;
+    item: Item;
     total: TItemCount;
     need: TItemCount;
     available: TItemCount;
@@ -46,9 +91,50 @@ class Utils {
             single
         };
     };
+
+    public static convertListToKeyCount(list: string[]) {
+        const stringCounts: { [key: string]: number } = {};
+        list.forEach((str) => {
+            if (stringCounts[str]) {
+                stringCounts[str]++;
+            } else {
+                stringCounts[str] = 1;
+            }
+        });
+        return stringCounts;
+    }
 }
 
-export const handleCSVRecipe = (recipeString: string) => {
+export const handleNBTRecipe = (fn: string, nbtObject: TNbtObject) => {
+    const _palette = nbtObject.palette.value.items;
+    const _blocks = nbtObject.blocks.value.items;
+
+    const data: TData = Utils.generateDataTemplate();
+    const _data = [];
+    console.groupCollapsed();
+    for (const block of _blocks) {
+        const _state = block.state;
+        const _real_block = _palette[_state.value];
+        _data.push(_real_block.Name.value);
+    }
+    console.groupEnd();
+    const _dc = Utils.convertListToKeyCount(_data);
+    for (const [_item, _count] of Object.entries(_dc)) {
+        const _uc = Utils.convertNumberToItemCount(_count);
+        data.recipe.push({
+            item: queryItemByRegisterName(_item),
+            total: _uc,
+            available: Utils.convertNumberToItemCount(0),
+            need: _uc
+        });
+    }
+
+    data.filename = fn;
+
+    EventBus.emit("LOADER:FULFILLED", data);
+};
+
+export const handleCSVRecipe = (fn: string, recipeString: string) => {
     const data: TData = Utils.generateDataTemplate();
     const recipeLines = recipeString.split("\n");
     const _l = recipeLines.length;
@@ -57,17 +143,18 @@ export const handleCSVRecipe = (recipeString: string) => {
         const line = recipeLines[_i];
         const _data = line.split(",");
         data.recipe.push({
-            item: getMinecraftItem(_data[0].replace(/"/g, "")),
+            item: queryItemByName(_data[0].replace(/"/g, "")),
             total: Utils.convertNumberToItemCount(Number(_data[1])),
             available: Utils.convertNumberToItemCount(Number(_data[3])),
             need: Utils.convertNumberToItemCount(Number(_data[2]))
         });
     }
 
+    data.filename = fn;
     EventBus.emit("LOADER:FULFILLED", data);
 };
 
-export const handleTextRecipe = (recipeString: string) => {
+export const handleTextRecipe = (fn: string, recipeString: string) => {
     const data: TData = Utils.generateDataTemplate();
     const recipeLines = recipeString.split("\n");
     const _l = recipeLines.length;
@@ -81,7 +168,7 @@ export const handleTextRecipe = (recipeString: string) => {
             } else {
                 const _data = line.split("|");
                 data.recipe.push({
-                    item: getMinecraftItem(_data[1]),
+                    item: queryItemByName(_data[1]),
                     total: Utils.convertNumberToItemCount(Number(_data[2])),
                     available: Utils.convertNumberToItemCount(Number(_data[4])),
                     need: Utils.convertNumberToItemCount(Number(_data[3]))
@@ -89,6 +176,8 @@ export const handleTextRecipe = (recipeString: string) => {
             }
         }
     }
+
+    data.filename = fn;
 
     EventBus.emit("LOADER:FULFILLED", data);
 };

@@ -64,7 +64,7 @@
                     </svg>
                     <span>{{ translatedComps.text.encoding_warning }}</span>
                 </div>
-                <table class="table table-pin-rows table-zebra">
+                <table class="table table-pin-rows table-zebra mb-2">
                     <thead>
                     <tr>
                         <th style="width: 64px"></th>
@@ -75,12 +75,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="r in data?.recipe" :key="r.item.registerName">
+                    <tr v-for="r in data?.recipe" :key="r.item.registerName"
+                        :class="{
+                            'text-success': r.need.single === 0 && r.need.stack === 0 && r.need.shulker_box === 0,
+                    }">
                         <th>
                             <img :alt="r.item.registerName + `_icon`"
                                  :src="`data:image/jpeg;base64,${r.item.smallIcon}`" />
                         </th>
-                        <th>{{ translatedComps.language == "zh" ? r.item.name : r.item.englishName }}</th>
+                        <th>
+                            <span>{{ translatedComps.language == "zh" ? r.item.name : r.item.englishName }}</span>
+                        </th>
                         <th>
                             <ItemCount :count="r.total" />
                         </th>
