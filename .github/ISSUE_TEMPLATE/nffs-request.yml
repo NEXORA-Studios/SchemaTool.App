@@ -5,7 +5,7 @@
 name: ⚡️ New File Format Support Request
 title: '[feat] '
 description: Suggest an new file format for load
-labels: ['type: nffs request']
+labels: [ 'type: nffs request', 'status: need triage' ]
 
 body:
   - type: textarea
