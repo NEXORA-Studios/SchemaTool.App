@@ -9,12 +9,10 @@ import {
 } from "@tauri-apps/plugin-fs";
 
 
-export const read = async (fp: string, large: boolean, bin: boolean, initWhenNotExist: boolean) => {
+export const read = async (fp: string, large: boolean, bin: boolean, initWhenNotExist: boolean, initObject?: any) => {
     if (!await exists(fp)) {
         if (initWhenNotExist) {
-            await write(fp, JSON.stringify({
-                "language": "en"
-            }), false);
+            await write(fp, JSON.stringify(initObject), false);
         } else throw new Error("No such file");
     }
 

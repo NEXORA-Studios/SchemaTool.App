@@ -18,7 +18,7 @@
     "button.setting.undo": "撤销",
     "button.setting.apply": "应用",
     "-----------------------------": "----------------------------",
-    "text.home.title": "蓝图查看器 (LiteView) v1.0.0",
+    "text.home.title": "蓝图查看器 (LiteView) v",
     "text.home.instruction": "点击 \"加载文件\" 按钮加载一个文件来开始查看",
     "text.home.encoding_warning": "Warning: 检测到编码异常，请尝试以 ASCII (纯文本) 方式保存材料清单文件并重新加载。",
     "table.home.item_name": "物品名称",

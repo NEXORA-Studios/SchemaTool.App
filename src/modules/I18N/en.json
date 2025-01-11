@@ -18,7 +18,7 @@
     "button.setting.undo": "Undo",
     "button.setting.apply": "Apply",
     "----------------------------------": "----------------------------------",
-    "text.home.title": "Litematica Viewer (LiteView) v1.0.0",
+    "text.home.title": "Litematica Viewer (LiteView) v",
     "text.home.instruction": "Click button \"Load a file\" to start browse materials list",
     "text.home.encoding_warning": "Warning: Encoding issue detected. Try save materials list file as raw text (ASCII) file and load the new file.",
     "table.home.item_name": "Item Name",

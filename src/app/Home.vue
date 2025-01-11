@@ -5,6 +5,7 @@
     import ItemCount from "../components/ItemCount.vue";
     import { $t } from "../modules/I18N/ModI18N.ts";
     import { SettingModule } from "../modules/ModSetting.ts";
+    import packageJson from "../../package.json"
     
     const loaded = ref<boolean>(false);
     const busy = ref<boolean>(false);
@@ -103,7 +104,7 @@
                 <img alt="" class="w-72" src="/logo.png" />
                 <div class="alert w-[75%] flex flex-col justify-center items-center rounded-md p-4"
                      role="alert">
-                    <h1 class="text-lg">{{ translatedComps.text.title }}</h1>
+                    <h1 class="text-lg">{{ translatedComps.text.title }}{{ packageJson.version}}</h1>
                     <h2 class="text-sm mt-1">{{ translatedComps.text.instruction }}</h2>
                 </div>
             </section>

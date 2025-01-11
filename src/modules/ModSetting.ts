@@ -3,10 +3,11 @@ import { read, write } from "./ModFileSystem.ts";
 
 class Setting {
 
-
     async get(key?: string): Promise<any> {
-        const _cfg = await read(`${await appLocalDataDir()}\\config.json`, false, false, true);
-        const _cfgObj = JSON.parse(JSON.parse(<string>_cfg));
+        const _cfg = <string>await read(`${await appLocalDataDir()}\\config.json`, false, false, true, {
+            "language": "zh"
+        });
+        const _cfgObj = JSON.parse(JSON.parse(_cfg));
         return key ? _cfgObj[key] : _cfgObj;
     }
 
