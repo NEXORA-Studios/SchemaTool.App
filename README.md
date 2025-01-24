@@ -2,7 +2,7 @@
 
 <img src="public/logo_v2.png" width="256" height="256">
 
-# SchemaTool <span style="font-size: 1rem">Formerly LiteView</span>
+# SchemaTool (Formerly LiteView)
 
 ### SchemaTool is a multi-platform toolbox for Minecraft Schematic Files.
 
