@@ -6,4 +6,9 @@
     margin: 0;
     user-select: none;
     scrollbar-width: none;
+    font-family: Bahnschrift;
+}
+
+img {
+    pointer-events: none;
 }

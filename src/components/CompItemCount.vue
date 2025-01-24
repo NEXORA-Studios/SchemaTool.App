@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-    import { TItemCount } from "../modules/ModFileHandler.ts";
+    import { TItemCount } from "../modules/ModFileAnalyzer.ts";
     
     const props = defineProps<{
         count: TItemCount,

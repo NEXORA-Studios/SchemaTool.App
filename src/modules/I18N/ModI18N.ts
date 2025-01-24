@@ -3,7 +3,7 @@ import ChineseCN from "./zh.json";
 import { SettingModule } from "../ModSetting.ts";
 
 interface Translations {
-    [key: string]: string;
+    [key: string]: any;
 }
 
 const TrEnglishUS: Translations = EnglishUS;

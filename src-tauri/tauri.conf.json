@@ -1,8 +1,8 @@
 {
     "$schema": "https://schema.tauri.app/config/2",
-    "productName": "LiteView",
-    "version": "1.1.1",
-    "identifier": "liteview.yuns-lab.app",
+    "productName": "SchemaTool",
+    "version": "2.0.0",
+    "identifier": "schematool.yuns-lab.app",
     "build": {
         "beforeDevCommand": "pnpm dev",
         "devUrl": "http://localhost:1420",
@@ -12,10 +12,13 @@
     "app": {
         "windows": [
             {
-                "title": "LiteView",
+                "title": "SchemaTool",
                 "width": 1024,
+                "minWidth": 1024,
                 "height": 768,
-                "decorations": false
+                "minHeight": 768,
+                "decorations": false,
+                "center": true
             }
         ],
         "security": {

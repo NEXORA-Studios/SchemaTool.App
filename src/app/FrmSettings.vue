@@ -19,8 +19,8 @@
             setting_customization_language: await $t("text.settings.customization.language")
         },
         btn: {
-            undo: await $t("button.setting.undo"),
-            apply: await $t("button.setting.apply")
+            undo: await $t("button.settings.undo"),
+            apply: await $t("button.settings.apply")
         }
     });
     
@@ -41,7 +41,8 @@
 </script>
 
 <template>
-    <main id="AppSetting" class="fixed top-16 w-full h-full overflow-x-hidden overflow-y-auto p-8 flex flex-col gap-2">
+    <main id="FrmSettings"
+          class="fixed top-16 left-[5%] w-[95%] h-full overflow-x-hidden overflow-y-auto p-8 flex flex-col gap-2">
         <section class="flex items-center justify-end gap-2 mx-2">
             <h1 class="text-3xl mr-auto">{{ translatedTexts.text.setting_title }}</h1>
             <button class="btn btn-warning" @click=handleUndo>{{ translatedTexts.btn.undo }}</button>
@@ -67,7 +68,7 @@
 </template>
 
 <style lang="scss" scoped>
-    main#AppSetting {
+    main#FrmSettings {
         section.SettingItem {
             @apply flex items-center justify-between w-[90%] ml-12 text-xl;
         }

@@ -105,19 +105,17 @@ class Utils {
     }
 }
 
-export const handleNBTRecipe = (fn: string, nbtObject: TNbtObject) => {
+export const analyzeNBTRecipe = (fn: string, nbtObject: TNbtObject) => {
     const _palette = nbtObject.palette.value.items;
     const _blocks = nbtObject.blocks.value.items;
 
     const data: TData = Utils.generateDataTemplate();
     const _data = [];
-    console.groupCollapsed();
     for (const block of _blocks) {
         const _state = block.state;
         const _real_block = _palette[_state.value];
         _data.push(_real_block.Name.value);
     }
-    console.groupEnd();
     const _dc = Utils.convertListToKeyCount(_data);
     for (const [_item, _count] of Object.entries(_dc)) {
         const _uc = Utils.convertNumberToItemCount(_count);
@@ -134,7 +132,7 @@ export const handleNBTRecipe = (fn: string, nbtObject: TNbtObject) => {
     EventBus.emit("LOADER:FULFILLED", data);
 };
 
-export const handleCSVRecipe = (fn: string, recipeString: string) => {
+export const analyzeCSVRecipe = (fn: string, recipeString: string) => {
     const data: TData = Utils.generateDataTemplate();
     const recipeLines = recipeString.split("\n");
     const _l = recipeLines.length;
@@ -154,7 +152,7 @@ export const handleCSVRecipe = (fn: string, recipeString: string) => {
     EventBus.emit("LOADER:FULFILLED", data);
 };
 
-export const handleTextRecipe = (fn: string, recipeString: string) => {
+export const analyzeTextRecipe = (fn: string, recipeString: string) => {
     const data: TData = Utils.generateDataTemplate();
     const recipeLines = recipeString.split("\n");
     const _l = recipeLines.length;
