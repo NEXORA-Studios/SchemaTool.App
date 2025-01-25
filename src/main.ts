@@ -7,5 +7,7 @@ import { ModCache } from "./modules/ModCache.ts";
 
 createApp(App).use(router).mount("#app");
 
-await ModSetting.initCheck(); // Make sure config file is up-to-date.
-await ModCache.initCheck();
+(async () => {
+    await ModSetting.initCheck(); // Make sure config file is up-to-date.
+    await ModCache.initCheck();
+})();
