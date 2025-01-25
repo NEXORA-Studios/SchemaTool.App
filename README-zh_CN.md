@@ -4,6 +4,8 @@
 
 # SchemaTool (原称 LiteView)
 
+[English](README.md) | [中文](README-zh_CN.md)
+
 ### SchemaTool 是一个为 Minecraft Schematic 文件打造的工具箱
 
 请在此处下载: [发行版列表](https://github.com/Yuns-Lab/SchemaTool.App/releases)
