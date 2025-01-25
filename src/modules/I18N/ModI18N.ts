@@ -1,6 +1,6 @@
 import EnglishUS from "./en.json";
 import ChineseCN from "./zh.json";
-import { SettingModule } from "../ModSetting.ts";
+import { ModSetting } from "../ModSetting.ts";
 
 interface Translations {
     [key: string]: any;
@@ -10,7 +10,7 @@ const TrEnglishUS: Translations = EnglishUS;
 const TrChineseCN: Translations = ChineseCN;
 
 export const $t = async (key: string) => {
-    switch (await SettingModule.get("language")) {
+    switch (await ModSetting.get("language")) {
         case "en":
         default:
             return TrEnglishUS[key] ?? key;

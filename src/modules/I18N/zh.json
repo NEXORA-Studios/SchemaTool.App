@@ -2,12 +2,22 @@
     "text.home.title": "蓝图工具箱 (SchemaTool) v",
     "text.home.instruction": "要使用此工具箱，请通过左侧菜单打开子应用。",
     "text.liteview.title": "子应用：材料查看器",
-    "text.liteview.instruction": [
+    "text.liteview.instructions": [
         "请先加载一个文件来查看材料清单",
         "点击下方的一个按钮来加载"
     ],
+    "text.liteview.stats.titles": [
+        "基本信息",
+        "共计",
+        "总计"
+    ],
+    "text.liteview.stats.subtexts": [
+        "种物品",
+        "块方块"
+    ],
+    "text.liteview.try_to_load": "尝试从缓存加载中……",
     "text.liteview.encoding_warning": "提示：检测到文件编码问题，请尝试将材料清单保存为纯文本（ASCII 艺术表达文件）后再次加载",
-    "text.liteview.table_title": [
+    "text.liteview.table_titles": [
         "物品名称",
         "总量",
         "已有",
@@ -16,6 +26,9 @@
     "text.settings.title": "设置",
     "text.settings.customization": "个性化",
     "text.settings.customization.language": "语言",
+    "text.settings.system": "系统",
+    "text.settings.system.longlastingcache": "持久化存储",
+    "text.settings.system.longlastingcache.tooltip": "启用此功能后，工具箱将在退出时缓存您加载的文件以供再次查看。注：这不会影响在子应用间切换时的缓存行为。",
     "--------": "--------",
     "button.quit": "退出工具箱",
     "button.miniapps.home": "主页",

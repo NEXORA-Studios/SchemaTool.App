@@ -2,12 +2,22 @@
     "text.home.title": "Schematic Toolbox (SchemaTool) v",
     "text.home.instruction": "Open an MiniApp via sidebar at left to start using this toolbox.",
     "text.liteview.title": "MiniApp: LiteView",
-    "text.liteview.instruction": [
+    "text.liteview.instructions": [
         "Load a file to start browse material list.",
         "Click button below to choose file to load your file."
     ],
+    "text.liteview.stats.titles": [
+        "Info",
+        "Total Number",
+        "Total Amount"
+    ],
+    "text.liteview.stats.subtexts": [
+        "Kinds of Items",
+        "Blocks"
+    ],
+    "text.liteview.try_to_load": "Try to loading from cache……",
     "text.liteview.encoding_warning": "Warning: Encoding issue detected. Try save materials list file as raw text (ASCII) file and load the new file.",
-    "text.liteview.table_title": [
+    "text.liteview.table_titles": [
         "Item Name",
         "Total",
         "Available",
@@ -16,6 +26,9 @@
     "text.settings.title": "Settings",
     "text.settings.customization": "Customization",
     "text.settings.customization.language": "Language",
+    "text.settings.system": "System",
+    "text.settings.system.longlastingcache": "Long-lasting Cache",
+    "text.settings.system.longlastingcache.tooltip": "By enable this, when you quit toolbox, app will keep remember your loaded files for next visit. Tip: This will not affect the cache behavior when switching between miniapps.",
     "--------": "--------",
     "button.quit": "Quit Toolbox",
     "button.miniapps.home": "Home",

@@ -61,6 +61,7 @@ interface TRecipeItem {
 
 export interface TData {
     filename: string;
+    filetype: "litematic" | "nbt" | "csv" | "txt" | "unknown";
     recipe: TRecipeItem[];
 }
 
@@ -77,6 +78,7 @@ class Utils {
     public static generateDataTemplate(): TData {
         return {
             filename: "",
+            filetype: "unknown",
             recipe: []
         };
     };
@@ -128,13 +130,14 @@ export const analyzeNBTRecipe = (fn: string, nbtObject: TNbtObject) => {
     }
 
     data.filename = fn;
+    data.filetype = "nbt";
 
     EventBus.emit("LOADER:FULFILLED", data);
 };
 
 export const analyzeCSVRecipe = (fn: string, recipeString: string) => {
     const data: TData = Utils.generateDataTemplate();
-    const recipeLines = recipeString.split("\n");
+    const recipeLines = recipeString.trim().split("\n");
     const _l = recipeLines.length;
 
     for (let _i = 1; _i < _l; _i++) {
@@ -149,6 +152,8 @@ export const analyzeCSVRecipe = (fn: string, recipeString: string) => {
     }
 
     data.filename = fn;
+    data.filetype = "csv";
+
     EventBus.emit("LOADER:FULFILLED", data);
 };
 
@@ -176,6 +181,7 @@ export const analyzeTextRecipe = (fn: string, recipeString: string) => {
     }
 
     data.filename = fn;
+    data.filetype = "txt";
 
     EventBus.emit("LOADER:FULFILLED", data);
 };

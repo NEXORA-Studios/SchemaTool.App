@@ -19,6 +19,9 @@
             "allow": [
                 {
                     "path": "$APPLOCALDATA/config.json"
+                },
+                {
+                    "path": "$APPLOCALDATA/cache.json"
                 }
             ]
         }

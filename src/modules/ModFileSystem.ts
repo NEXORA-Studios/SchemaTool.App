@@ -37,7 +37,6 @@ export const write = async (fp: string, data: any, bin: boolean) => {
     if (bin) {
         await writeFile(fp, data);
     } else {
-        const contents = JSON.stringify(data);
-        await writeTextFile(fp, contents);
+        await writeTextFile(fp, data);
     }
 };
