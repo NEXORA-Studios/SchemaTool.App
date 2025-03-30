@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Nexora West";
+    src: url("NexoraWest.woff2") format("woff2");
+}
+
+* {
+    font-family: "Nexora West", sans-serif;
+    user-select: none;
+}
+
+#main-content {
+    transition: all 0.3s ease-in-out;
+}

@@ -1,0 +1,26 @@
+name: ⚡️ New File Format Support Request
+title: '[feat(nffs)] '
+description: Suggest an new file format for load
+labels: [ 'type: nffs request', 'status: needs triage' ]
+type: "Feature"
+
+body:
+  - type: textarea
+    id: describe
+    attributes:
+      label: Describe the file format
+      description: A clear description of the new file format this feature would solve
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution
+      description: "Any solutions you've considered"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
