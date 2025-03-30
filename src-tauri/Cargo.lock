@@ -3,6 +3,21 @@
 version = 4
 
 [[package]]
+name = "SchemaTool-App"
+version = "2.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-dialog",
+ "tauri-plugin-fs",
+ "tauri-plugin-opener",
+ "tauri-plugin-store",
+ "tokio",
+]
+
+[[package]]
 name = "addr2line"
 version = "0.24.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3119,21 +3134,6 @@ dependencies = [
  "quote",
  "serde_derive_internals",
  "syn 2.0.100",
-]
-
-[[package]]
-name = "schematoolapp"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-dialog",
- "tauri-plugin-fs",
- "tauri-plugin-opener",
- "tauri-plugin-store",
- "tokio",
 ]
 
 [[package]]
