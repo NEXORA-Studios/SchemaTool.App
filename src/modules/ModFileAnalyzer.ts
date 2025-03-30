@@ -1,6 +1,5 @@
 import { Item, queryItemByName, queryItemByRegisterName } from "./ItemData/ModItemDB.ts";
 import { ModEventBus as EventBus } from "./ModEventBus.ts";
-import { JsonValue } from "deepslate";
 
 interface TLitematicaEnclosingSize {
     x: number;
@@ -185,7 +184,7 @@ class Utils {
     }
 }
 
-export function analyzeLitematicRecipe(fn: string, data: TLitematicaNbtObject) {
+export function analyzeLitematicRecipe(_fn: string, data: TLitematicaNbtObject) {
     const jsonData = data;
     console.log("完整 NBT 数据：", jsonData);
 
@@ -206,9 +205,9 @@ export function analyzeLitematicRecipe(fn: string, data: TLitematicaNbtObject) {
 
     // 解析材料清单
 
-    const materialList: string[] = [];
-    const _palette = parsedRegion.BlockStatePalette.values.items;
-    const _blocks = parsedRegion.BlockStates.value;
+    // const _materialList: string[] = [];
+    // const _palette = parsedRegion.BlockStatePalette.values.items;
+    // const _blocks = parsedRegion.BlockStates.value;
 
     // 统计材料数量
     // const materialCounts = Utils.convertListToKeyCount(materialList);
